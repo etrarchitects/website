@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { CategoryData, CATEGORY_QUERY } from "../api";
+import { CATEGORY_QUERY } from "../api/query";
+import { GetCategories } from "../generated/GetCategories";
 import { HistoryState } from "../hooks";
 import {
   ADD_CATEGORY,
@@ -18,16 +19,18 @@ const footer = ["about", "contacts"];
 export function HeaderFooter() {
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useQuery<CategoryData>(CATEGORY_QUERY, {
+  const { data } = useQuery<GetCategories>(CATEGORY_QUERY, {
     onCompleted: (e) => {
-      const currentLocation = location.pathname.split("/")[1];
-      dispatch({
-        type: ADD_CATEGORY,
-        payload: e.categories.map((e) => ({
-          category: e,
-          active: e.type === currentLocation,
-        })),
-      });
+      if (e.categories) {
+        const currentLocation = location.pathname.split("/")[1];
+        dispatch({
+          type: ADD_CATEGORY,
+          payload: e.categories.map((e) => ({
+            category: e,
+            active: e?.type && e.type === currentLocation,
+          })),
+        });
+      }
     },
   });
   const history = useHistory<HistoryState>();
@@ -63,20 +66,27 @@ export function HeaderFooter() {
           }
         >
           {data &&
-            data.categories.map((e) => (
-              <li
-                key={e.id}
-                onClick={() => {
-                  history.push(`/${e.type}`, { delayed: isHome });
-                  dispatch({
-                    type: SWITCH_CATEGORY,
-                    payload: e,
-                  });
-                }}
-              >
-                {e.type}
-              </li>
-            ))}
+            data.categories &&
+            data.categories.map((e) => {
+              if (e !== null) {
+                return (
+                  <li
+                    key={e.id}
+                    onClick={() => {
+                      history.push(`/${e.type}`, { delayed: isHome });
+                      dispatch({
+                        type: SWITCH_CATEGORY,
+                        payload: e,
+                      });
+                    }}
+                  >
+                    {e.type}
+                  </li>
+                );
+              } else {
+                return <></>;
+              }
+            })}
         </ul>
       </div>
 
@@ -85,23 +95,31 @@ export function HeaderFooter() {
           className="text-center text-white my-auto"
           style={{ fontSize: "7vw" }}
         >
-          {data.categories.map((e) => (
-            <p
-              key={e.id}
-              onClick={() => {
-                history.push(`/${e.type}`, { delayed: false });
-                dispatch({
-                  type: SWITCH_CATEGORY,
-                  payload: e.id,
-                });
-                dispatch({
-                  type: TOGGLE_OPENED,
-                });
-              }}
-            >
-              {e.type}
-            </p>
-          ))}
+          {data &&
+            data.categories &&
+            data.categories.map((e) => {
+              if (e !== null) {
+                return (
+                  <p
+                    key={e.id}
+                    onClick={() => {
+                      history.push(`/${e.type}`, { delayed: false });
+                      dispatch({
+                        type: SWITCH_CATEGORY,
+                        payload: e.id,
+                      });
+                      dispatch({
+                        type: TOGGLE_OPENED,
+                      });
+                    }}
+                  >
+                    {e.type}
+                  </p>
+                );
+              } else {
+                return <></>;
+              }
+            })}
           {footer.map((e, i) => (
             <p
               key={i}

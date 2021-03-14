@@ -2,10 +2,10 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux"
 import { combineReducers, createStore } from "redux"
 import { devToolsEnhancer } from "redux-devtools-extension"
-import { Category } from "../api"
+import { GetCategories_categories } from "../generated/GetCategories"
 
 export interface WrappedCategory {
-   category: Category,
+   category: GetCategories_categories,
    limit: number,
    active: boolean,
 }
@@ -15,12 +15,12 @@ export type CategoryState = WrappedCategory[]
 export const ADD_CATEGORY = "ADD_CATEGORY"
 interface AddCategoryAction {
    type: typeof ADD_CATEGORY,
-   payload: {category:Category, active:boolean}[]
+   payload: {category:GetCategories_categories, active:boolean}[]
 }
 export const SWITCH_CATEGORY = "SWITCH_CATEGORY"
 interface SwitchCategoryAction {
    type: typeof SWITCH_CATEGORY,
-   payload: Category
+   payload: GetCategories_categories
 }
 export const RESET_CATEGORY = "RESET_CATEGORY"
 interface ResetCategoryAction {

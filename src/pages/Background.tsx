@@ -1,17 +1,18 @@
 import { useQuery } from "@apollo/client";
-import { BackgroundImageData, BACKGROUND_IMG_QUERY } from "../api";
+import { BACKGROUND_IMG_QUERY } from "../api/query";
 import { BackgroundSlideshow } from "../components/BackgroundSlideshow";
 import { EtraLogo } from "../components/EtraLogo";
 import { HeaderFooter } from "../components/HeaderFooter";
+import { GetBackgroundImages } from "../generated/GetBackgroundImages";
 
 export function Background() {
-  const { data } = useQuery<BackgroundImageData>(BACKGROUND_IMG_QUERY);
-  if (data) {
+  const { data } = useQuery<GetBackgroundImages>(BACKGROUND_IMG_QUERY);
+  if (data && data.backgroundImg !== null) {
     return (
       <>
         <EtraLogo />
         <HeaderFooter />
-        <BackgroundSlideshow data={data} />
+        <BackgroundSlideshow images={data.backgroundImg.images} />
       </>
     );
   } else {

@@ -1,20 +1,21 @@
 import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { Switch, Route, useHistory } from "react-router-dom";
-import {
-  ImgFormatType,
-  Post,
-  PostData,
-  PostsQueryVars,
-  POSTS_QUERY,
-} from "../api";
+import { ImgFormatType } from "../api";
+import { POSTS_QUERY } from "../api/query";
 import { About } from "../components/About";
 import { AltAnimatedList } from "../components/AltAnimatedList";
 import { CategoryIntro } from "../components/CategoryIntro";
 import { Contacts } from "../components/Contacts";
 import { PostViewer } from "../components/PostViewer";
+import {
+  GetPosts,
+  GetPostsVariables,
+  GetPosts_posts,
+} from "../generated/GetPosts";
 import { useLocationState } from "../hooks";
 import { AppDispatch, INCREMENT_CATEGORY, useTypedSelector } from "../reducers";
+import { notUndefined } from "../utils";
 import { apiUrl } from "./Main";
 
 export function Content() {
@@ -49,14 +50,14 @@ function PostList() {
   const state = useLocationState();
   const history = useHistory();
   const animation = state.delayed ? "animate_zoomin_delayed" : "animate_zoomin";
-  const { data } = useQuery<PostData, PostsQueryVars>(POSTS_QUERY, {
+  const { data } = useQuery<GetPosts, GetPostsVariables>(POSTS_QUERY, {
     variables: {
       category: category?.category.id ?? "",
     },
     pollInterval: 10 * 1000,
   });
 
-  const f = (e: Post) => {
+  const f = (e: GetPosts_posts) => {
     const next = async () => history.push(`/post/${e.id}`);
     return {
       fst: <PostMetadata post={e} onClick={next} />,
@@ -65,12 +66,13 @@ function PostList() {
     };
   };
 
-  return data && category ? (
+  return data && category && data.posts !== null ? (
     <AltAnimatedList
-      list={data.posts.slice(0, category.limit).map(f)}
+      list={data.posts.slice(0, category.limit).filter(notUndefined).map(f)}
       rowClass="my-4"
       animation={animation}
       onScrollEnd={() =>
+        data.posts !== null &&
         data.posts.length >= category.limit &&
         dispatch({ type: INCREMENT_CATEGORY })
       }
@@ -82,7 +84,7 @@ function PostList() {
   );
 }
 
-function PostMetadata(props: { post: Post; onClick: () => {} }) {
+function PostMetadata(props: { post: GetPosts_posts; onClick: () => {} }) {
   return (
     <div className="text-center text-white text-shadow">
       <h1>{props.post.title}</h1>

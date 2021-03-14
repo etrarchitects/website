@@ -1,20 +1,25 @@
 // import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import { Post, PostQueryVars, POST_QUERY, SinglePostData } from "../api";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router";
 import { Markdown } from "./Markdown";
+import { POST_QUERY } from "../api/query";
+import { GetPost, GetPostVariables, GetPost_post } from "../generated/GetPost";
 
 export function PostViewer() {
   const params = useParams<{ id: string }>();
-  const { data } = useQuery<SinglePostData, PostQueryVars>(POST_QUERY, {
+  const { data } = useQuery<GetPost, GetPostVariables>(POST_QUERY, {
     variables: { id: params.id },
   });
 
   return (
     <div className="main-container">
       <div className="container bg-white shadow-lg animate_zoomin">
-        {data !== undefined ? <Content post={data.post} /> : <></>}
+        {data !== undefined && data.post !== null ? (
+          <Content post={data.post} />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
@@ -36,7 +41,7 @@ export function PostViewer() {
 //   );
 // }
 
-function Content({ post }: { post: Post }) {
+function Content({ post }: { post: GetPost_post }) {
   if (post === null) return <></>;
   return (
     <>
@@ -51,12 +56,21 @@ function Content({ post }: { post: Post }) {
             <Markdown content={post.content} />
           </div>
           <div className="col-lg-3">
-            {post.post_metadata.map((e, i) => (
-              <div key={i}>
-                <h3 className="title text-primary text-uppercase">{e.title}</h3>
-                <p className="content">{e.content}</p>
-              </div>
-            ))}
+            {post.metadata &&
+              post.metadata.map((e, i) => {
+                if (e !== null) {
+                  return (
+                    <div key={i}>
+                      <h3 className="title text-primary text-uppercase">
+                        {e.title}
+                      </h3>
+                      <p className="content">{e.content}</p>
+                    </div>
+                  );
+                } else {
+                  return <></>;
+                }
+              })}
           </div>
         </div>
       </div>

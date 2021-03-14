@@ -1,22 +1,18 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { CategoryIntroQuery } from "../api/query";
+import {
+  GetCategoryIntro,
+  GetCategoryIntroVariables,
+} from "../generated/GetCategoryIntro";
 import { Markdown } from "./Markdown";
 
-const CategoryIntroQuery = gql`
-  query GetCategoryIntro($id: ID!) {
-    category(id: $id, publicationState: LIVE) {
-      intro
-    }
-  }
-`;
-
 export function CategoryIntro({ id }: { id: string }) {
-  const { data } = useQuery<{ category: { intro: string } }, { id: string }>(
+  const { data } = useQuery<GetCategoryIntro, GetCategoryIntroVariables>(
     CategoryIntroQuery,
     { variables: { id } }
   );
 
-  console.log(data, id);
-  if (data)
+  if (data && data.category && data.category.intro)
     return (
       <Markdown
         content={data.category.intro}
