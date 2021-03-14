@@ -1,0 +1,104 @@
+@use "variables.scss" as *;
+
+.etra-logo-container {
+   @include full-page;
+
+   display: flex;
+   flex-direction: column;
+
+   svg {
+      width: 100%;
+
+   }
+
+   &.moveUp {
+      svg {
+         animation: goUp $etra-move-duration linear forwards;
+
+         .subtitle {
+            animation: disappear $subtitle-etra-duration linear forwards;
+         }
+      }
+   }
+
+   &.moveDown{
+
+      svg {
+         animation: goDown $etra-move-duration linear forwards;
+
+         .subtitle {
+            animation: appear $subtitle-etra-duration linear forwards;
+         }
+      }
+   }
+
+
+   &.top {
+      @extend .etra-logo-container;
+      svg {
+      height: 100px;
+      transform: translateY(10px);
+      z-index: 0;
+      .subtitle {
+         opacity: 0;
+      }
+   }
+   }
+
+   &.center {
+      @extend .etra-logo-container;
+      svg {
+         height: 300px;
+         transform: translateY(100%);
+      }
+   }
+
+}
+
+@keyframes goDown {
+   from {
+      height: 100px;
+      transform: translateY(10px);
+      z-index: 0;
+   }
+
+   to {
+      height: 300px;
+      transform: translateY(100%);
+      z-index: 100;
+   }
+}
+
+@keyframes appear {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes goUp {
+   from {
+      height: 300px;
+      transform: translateY(100%);
+      z-index: 100;
+   }
+
+   to {
+      height: 100px;
+      transform: translateY(10px);
+      z-index: 0;
+   }
+}
+
+@keyframes disappear {
+   from {
+      opacity: 1;
+   }
+
+   to {
+      opacity: 0;
+   }
+}

@@ -1,0 +1,23 @@
+@use "variables.scss" as *;
+
+.animate_zoomin {
+   animation: zoomIn $entrance-duration 1 linear forwards;
+}
+
+
+.animate_zoomin_delayed {
+   opacity: 0;
+   animation: zoomIn $entrance-duration 1 linear forwards;
+   animation-delay: $etra-move-duration;
+}
+
+@keyframes zoomIn {
+   from {
+     opacity: 0;
+     transform: scale3d(0.3, 0.3, 0.3);
+   }
+ 
+   to {
+     opacity: 1;
+   }
+ }

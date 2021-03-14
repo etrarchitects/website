@@ -1,0 +1,23 @@
+// @import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@import "font.scss";
+@import "main.scss";
+@import "backgroundSlideshow.scss";
+@import "etraLogo.scss";
+@import "headerFooter.scss";
+@import "post.scss";
+
+$primary: #6495ed;
+
+$theme-colors: (
+  "primary": $primary
+);
+
+$box-shadow-lg: 0 1rem 1rem rgba($black, 0.5);
+$border-radius-lg: 1rem;
+
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";

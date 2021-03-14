@@ -1,0 +1,65 @@
+html, body, div#root {
+   margin: 0;
+   font-family: TheSansMono;
+}
+
+
+.each-slide > div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-size: cover;
+   height: 350px;
+ }
+ 
+ .each-slide span {
+   padding: 20px;
+   font-size: 20px;
+   background: #efefef;
+   text-align: center;
+ }
+
+main {
+   position: absolute;
+   top: 70px;
+   width: 100%;
+   height: calc(100vh - 130px);
+   display: flex;
+   justify-content: center;
+
+   .main-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+   
+      &::-webkit-scrollbar {
+         display: none;
+      }
+   }
+}
+
+@include media-breakpoint-down(sm) {
+   main {
+      height: calc(100vh - 70px);
+   }
+ }
+
+
+.text-shadow {
+   text-shadow: 2px 1rem 3rem rgba(0,0,0,1);
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button.details {
+   background-color: transparent;
+   border: 2px solid white;
+   outline: none;
+   cursor: pointer;
+}

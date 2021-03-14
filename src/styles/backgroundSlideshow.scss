@@ -1,0 +1,43 @@
+@import "variables.scss" ;
+@use "variables.scss" as *;
+
+.home-slideshow {
+
+   @include full-page;
+   z-index: $background-index;
+
+   .photos-container {
+      position: relative;
+      width: inherit;
+      height: inherit;
+      
+      img {
+         display: none;
+         position: absolute;
+         width: inherit;
+         height: inherit;
+         object-fit: cover;
+      }
+
+      .leave {
+         display: block;
+         z-index: $background-index;
+         animation: exitImg 3s 1 linear forwards;
+      }
+      
+      .enter {
+         display: block;
+         z-index: ($background-index - 1);
+      }
+      
+   }
+}
+ 
+@keyframes exitImg {
+   from {
+      opacity: 1;
+   }
+   to {
+      opacity: 0;
+   }
+}
