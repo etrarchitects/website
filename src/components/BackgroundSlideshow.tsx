@@ -1,10 +1,26 @@
+import { useQuery } from "@apollo/client";
 import { ReactElement, useEffect, useState } from "react";
-import { GetBackgroundImages_backgroundImg_images } from "../generated/GetBackgroundImages";
+import { BACKGROUND_IMG_QUERY } from "../api/query";
+import {
+  GetBackgroundImages,
+  GetBackgroundImages_backgroundImg_images,
+} from "../generated/GetBackgroundImages";
 import { apiUrl } from "../pages/Main";
 
 const mod = (x: number, n: number): number => ((x % n) + n) % n;
 
-export function BackgroundSlideshow({
+export function BackgroundSlideshow() {
+  const { data } = useQuery<GetBackgroundImages>(BACKGROUND_IMG_QUERY);
+  return data && data.backgroundImg && data.backgroundImg.images !== null ? (
+    <InternalBackgroundSlideshow images={data.backgroundImg.images} />
+  ) : (
+    <div className="home-slideshow">
+      <div className="photos-container bg-primary"></div>
+    </div>
+  );
+}
+
+function InternalBackgroundSlideshow({
   images,
 }: {
   images: (GetBackgroundImages_backgroundImg_images | null)[] | null;
