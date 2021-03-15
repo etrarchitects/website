@@ -49,8 +49,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "apollo:generate": "rm -rf src/generated && apollo codegen:generate --localSchemaFile schema.graphql --excludes=node_modules/* --includes=**/api/query.ts --target typescript --tagName gql --outputFlat src/generated"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -71,6 +70,9 @@
     ]
   },
   "devDependencies": {
-    "apollo": "^2.32.5"
+    "@types/gulp": "^4.0.8",
+    "apollo": "^2.32.5",
+    "gulp": "^4.0.2",
+    "path": "^0.12.7"
   }
 }
