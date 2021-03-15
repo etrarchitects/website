@@ -1,14 +1,14 @@
-@use "variables.scss" as *;
+.fade-in {
+  animation: zoomIn $entrance-duration 1 linear forwards;
+}
 
-.animate_zoomin {
-   animation: zoomIn $entrance-duration 1 linear forwards;
+.fade-bottom-up {
+   animation: fadeBottomUp $entrance-duration 1 linear forwards;
 }
 
 
-.animate_zoomin_delayed {
-   opacity: 0;
-   animation: zoomIn $entrance-duration 1 linear forwards;
-   animation-delay: $etra-move-duration;
+.animation-delay {
+   animation-delay: $entrance-delay;
 }
 
 @keyframes zoomIn {
@@ -20,4 +20,17 @@
    to {
      opacity: 1;
    }
- }
+}
+
+
+@keyframes fadeBottomUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

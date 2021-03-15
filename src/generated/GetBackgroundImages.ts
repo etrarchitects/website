@@ -3,13 +3,15 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ImgFormatType } from "../api";
+
 // ====================================================
 // GraphQL query operation: GetBackgroundImages
 // ====================================================
 
 export interface GetBackgroundImages_backgroundImg_images_img {
   __typename: "UploadFile";
-  formats: any | null;
+  formats: ImgFormatType;
 }
 
 export interface GetBackgroundImages_backgroundImg_images {

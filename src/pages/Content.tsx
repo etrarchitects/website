@@ -49,7 +49,7 @@ function PostList() {
   const dispatch = useDispatch<AppDispatch>();
   const state = useLocationState();
   const history = useHistory();
-  const animation = state.delayed ? "animate_zoomin_delayed" : "animate_zoomin";
+  const animation = `fade-bottom-up ${state.delayed ? "animation-delay" : ""}`;
   const { data } = useQuery<GetPosts, GetPostsVariables>(POSTS_QUERY, {
     variables: {
       category: category?.category.id ?? "",
@@ -90,7 +90,7 @@ function PostMetadata(props: { post: GetPosts_posts; onClick: () => {} }) {
       <h1>{props.post.title}</h1>
       <p>{props.post.subtitle}</p>
       <button
-        className="text-uppercase text-white p-2 mb-3 details"
+        className="text-uppercase text-white p-2 mb-3 details text-shadow"
         onClick={props.onClick}
       >
         DETTAGLI

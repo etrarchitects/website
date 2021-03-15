@@ -43,6 +43,59 @@ const toEdit = [
   },
   {
     file: path.join(outputPath, "GetPosts.ts"),
+    add: [
+      {
+        line: 5,
+        str: `import { ImgFormatType } from "../api";\n`
+      }
+    ],
+    replace: [
+      {
+        from: "formats: any | null;",
+        to: "formats: ImgFormatType;"
+      },
+    ]
+  },
+  {
+    file: path.join(outputPath, "GetPost.ts"),
+    add: [
+      {
+        line: 5,
+        str: `import { ImgFormatType } from "../api";\n`
+      }
+    ],
+    replace: [
+      {
+        from: "formats: any | null;",
+        to: "formats: ImgFormatType;"
+      },
+      {
+        from: "img: GetPost_post_slideshow_img | null;",
+        to: "img: GetPost_post_slideshow_img;"
+      },
+      {
+        from: "caption: string | null;",
+        to: "caption: string;"
+      }
+    ]
+  },
+  {
+    file: path.join(outputPath, "GetBackgroundImages.ts"),
+    add: [
+      {
+        line: 5,
+        str: `import { ImgFormatType } from "../api";\n`
+      }
+    ],
+    replace: [
+      {
+        from: "formats: any | null;",
+        to: "formats: ImgFormatType;"
+      },
+    ]
+  },
+  {
+    file: path.join(outputPath, "GetPosts.ts"),
     add: [],
     replace: [
       {

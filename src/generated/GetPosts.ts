@@ -3,13 +3,15 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ImgFormatType } from "../api";
+
 // ====================================================
 // GraphQL query operation: GetPosts
 // ====================================================
 
 export interface GetPosts_posts_thumbnail {
   __typename: "UploadFile";
-  formats: any | null;
+  formats: ImgFormatType;
 }
 
 export interface GetPosts_posts {

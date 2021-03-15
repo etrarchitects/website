@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ImgFormatType } from "../api";
+
 // ====================================================
 // GraphQL query operation: GetPost
 // ====================================================
@@ -13,12 +15,24 @@ export interface GetPost_post_metadata {
   content: string;
 }
 
+export interface GetPost_post_slideshow_img {
+  __typename: "UploadFile";
+  formats: ImgFormatType;
+}
+
+export interface GetPost_post_slideshow {
+  __typename: "ComponentPostSlider";
+  img: GetPost_post_slideshow_img;
+  caption: string;
+}
+
 export interface GetPost_post {
   __typename: "Post";
   id: string;
   title: string;
   content: string;
   metadata: (GetPost_post_metadata | null)[] | null;
+  slideshow: (GetPost_post_slideshow | null)[] | null;
 }
 
 export interface GetPost {

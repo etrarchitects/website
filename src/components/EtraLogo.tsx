@@ -3,10 +3,10 @@ import { useLocationState } from "../hooks";
 export function EtraLogo() {
   const locationState = useLocationState();
   let y_sx = "29.5%";
-  let y_dx = "28.7%";
+  let y_dx = "28.9%";
   let x_dx = 100;
   let x_sx = 200;
-  let strokeWidth = "3.2";
+  let strokeWidth = "3";
   let len = 1000;
 
   const f = () => {
@@ -17,7 +17,11 @@ export function EtraLogo() {
   };
 
   return (
-    <div id="etra-logo" className={`etra-logo-container ${f()}`}>
+    <div
+      id="etra-logo"
+      className={`etra-logo-container ${f()}`}
+      // style={locationState.moveDown ? { animationDelay: "0.2s" } : {}}
+    >
       <svg viewBox="0 0 300 100">
         <text
           className="title"

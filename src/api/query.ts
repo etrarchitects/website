@@ -23,6 +23,12 @@ query GetPost($id: ID!) {
       title
       content
     }
+    slideshow {
+      img {
+        formats
+      }
+      caption
+    }
   }
 }
 `;
@@ -78,5 +84,20 @@ export const ABOUTUS_QUERY = gql`
 query GetAboutUs {
   aboutUs(publicationState: LIVE) {
     description
+  }
+}`;
+
+export const CONTACTS_QUERY = gql`
+query GetContacts {
+  contact {
+    contact {
+      address {
+        street
+        postal_code
+        city
+      }
+      email
+      telephone
+    }
   }
 }`;

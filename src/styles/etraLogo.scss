@@ -8,6 +8,7 @@
 
    svg {
       width: 100%;
+      filter: drop-shadow($text-shadow);
 
    }
 
@@ -24,6 +25,9 @@
    &.moveDown{
 
       svg {
+         height: 100px;
+         transform: translateY(10px);
+         z-index: 0;
          animation: goDown $etra-move-duration linear forwards;
 
          .subtitle {

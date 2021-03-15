@@ -3,22 +3,6 @@ html, body, div#root {
    font-family: TheSansMono;
 }
 
-
-.each-slide > div {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   background-size: cover;
-   height: 350px;
- }
- 
- .each-slide span {
-   padding: 20px;
-   font-size: 20px;
-   background: #efefef;
-   text-align: center;
- }
-
 main {
    position: absolute;
    top: 70px;
@@ -50,7 +34,7 @@ main {
 
 
 .text-shadow {
-   text-shadow: 2px 1rem 3rem rgba(0,0,0,1);
+   text-shadow: $text-shadow;
 }
 
 * {

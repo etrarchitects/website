@@ -1,10 +1,11 @@
-// import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router";
 import { Markdown } from "./Markdown";
 import { POST_QUERY } from "../api/query";
 import { GetPost, GetPostVariables, GetPost_post } from "../generated/GetPost";
+import { Slideshow } from "./Slideshow";
+import { notUndefined } from "../utils";
 
 export function PostViewer() {
   const params = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ export function PostViewer() {
 
   return (
     <div className="main-container">
-      <div className="container bg-white shadow-lg animate_zoomin">
+      <div className="container bg-white shadow-lg fade-bottom-up">
         {data !== undefined && data.post !== null ? (
           <Content post={data.post} />
         ) : (
@@ -25,31 +26,15 @@ export function PostViewer() {
   );
 }
 
-// interface SlideShowProps {
-//   images: Images;
-// }
-
-// export function SlideShow({ images }: SlideShowProps) {
-//   return (
-//     <Fade easing="ease" indicators={true} pauseOnHover={true} duration={3000}>
-//       {images.map((e, i) => (
-//         <div key={i} className="each-fade">
-//           <img src={e.img} alt={""} style={{ width: "100%" }} />
-//         </div>
-//       ))}
-//     </Fade>
-//   );
-// }
-
 function Content({ post }: { post: GetPost_post }) {
   if (post === null) return <></>;
   return (
     <>
-      <h1 className="py-4 text-primary text-center">{post.title}</h1>
+      <h1 className="pt-4 text-primary text-center">{post.title}</h1>
+      {post.slideshow && (
+        <Slideshow slides={post.slideshow.filter(notUndefined)} />
+      )}
 
-      {/* <SlideShow images={postContent.images} /> */}
-
-      {/* <h3 className="text-center pt-4">{postContent.place}</h3> */}
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-9">

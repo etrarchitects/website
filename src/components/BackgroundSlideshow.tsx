@@ -9,21 +9,24 @@ import { apiUrl } from "../pages/Main";
 
 const mod = (x: number, n: number): number => ((x % n) + n) % n;
 
-export function BackgroundSlideshow() {
+export function BackgroundSlideshow({ onLoad }: { onLoad?: () => {} }) {
   const { data } = useQuery<GetBackgroundImages>(BACKGROUND_IMG_QUERY);
   return data && data.backgroundImg && data.backgroundImg.images !== null ? (
-    <InternalBackgroundSlideshow images={data.backgroundImg.images} />
+    <InternalBackgroundSlideshow
+      images={data.backgroundImg.images}
+      onLoad={onLoad}
+    />
   ) : (
-    <div className="home-slideshow">
-      <div className="photos-container bg-primary"></div>
-    </div>
+    <></>
   );
 }
 
 function InternalBackgroundSlideshow({
   images,
+  onLoad,
 }: {
   images: (GetBackgroundImages_backgroundImg_images | null)[] | null;
+  onLoad?: () => {};
 }) {
   const [index, setIndex] = useState(0);
 
@@ -55,9 +58,17 @@ function InternalBackgroundSlideshow({
       return (
         <img
           key={i}
-          className={`${getClass(i)} bg-primary`}
+          className={getClass(i)}
           src={src}
           alt={format.alternativeText}
+          onLoad={
+            i === 0 && onLoad
+              ? (e) => {
+                  while (!(e.target as any).complete) {}
+                  onLoad();
+                }
+              : undefined
+          }
         />
       );
     } else {

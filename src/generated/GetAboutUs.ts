@@ -9,7 +9,7 @@
 
 export interface GetAboutUs_aboutUs {
   __typename: "AboutUs";
-  description: string | null;
+  description: string;
 }
 
 export interface GetAboutUs {

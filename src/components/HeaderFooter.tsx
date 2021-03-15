@@ -39,7 +39,7 @@ export function HeaderFooter() {
 
   return (
     <div className="header-footer">
-      <div className="header">
+      <div className="header fade-in">
         <div
           className={`dummy ${isHome ? "" : "moveRight"}`}
           onClick={() => {
@@ -92,7 +92,7 @@ export function HeaderFooter() {
 
       {opened && data ? (
         <div
-          className="text-center text-white my-auto"
+          className="text-center text-white my-auto text-shadows"
           style={{ fontSize: "7vw" }}
         >
           {data &&
@@ -101,12 +101,13 @@ export function HeaderFooter() {
               if (e !== null) {
                 return (
                   <p
+                    style={{ cursor: "pointer" }}
                     key={e.id}
                     onClick={() => {
-                      history.push(`/${e.type}`, { delayed: false });
+                      history.push(`/${e.type}`, { delayed: isHome });
                       dispatch({
                         type: SWITCH_CATEGORY,
-                        payload: e.id,
+                        payload: e,
                       });
                       dispatch({
                         type: TOGGLE_OPENED,
@@ -122,6 +123,7 @@ export function HeaderFooter() {
             })}
           {footer.map((e, i) => (
             <p
+              style={{ cursor: "pointer" }}
               key={i}
               onClick={() => {
                 history.push(`/${e}`, { delayed: false });
@@ -142,7 +144,9 @@ export function HeaderFooter() {
       )}
       <div
         className={
-          isHome ? "footer" : "footer d-none d-lg-flex d-xl-flex d-xxl-flex"
+          isHome
+            ? "footer fade-in"
+            : "footer d-none d-lg-flex d-xl-flex d-xxl-flex"
         }
       >
         <ul>

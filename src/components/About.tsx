@@ -25,7 +25,7 @@ interface GroupedTeam {
 export function About() {
   const { data } = useQuery<GetTeams>(TEAMS_QUERY);
   const state = useLocationState();
-  const animation = state.delayed ? "animate_zoomin_delayed" : "animate_zoomin";
+  const animation = `fade-bottom-up ${state.delayed ? "animation-delay" : ""}`;
 
   const getGroupedTeam = (e: GetTeams) => {
     const dict: GroupedTeam = {};
