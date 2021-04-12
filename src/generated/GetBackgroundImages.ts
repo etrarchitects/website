@@ -5,6 +5,8 @@
 
 import { ImgFormatType } from "../api";
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetBackgroundImages
 // ====================================================
@@ -26,4 +28,8 @@ export interface GetBackgroundImages_backgroundImg {
 
 export interface GetBackgroundImages {
   backgroundImg: GetBackgroundImages_backgroundImg | null;
+}
+
+export interface GetBackgroundImagesVariables {
+  publicationState?: PublicationState | null;
 }

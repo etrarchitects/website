@@ -5,6 +5,8 @@
 
 import { ImgFormatType } from "../api";
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetTeams
 // ====================================================
@@ -37,4 +39,8 @@ export interface GetTeams_teams {
 
 export interface GetTeams {
   teams: (GetTeams_teams | null)[] | null;
+}
+
+export interface GetTeamsVariables {
+  publicationState?: PublicationState | null;
 }

@@ -6,11 +6,12 @@ import { POST_QUERY } from "../api/query";
 import { GetPost, GetPostVariables, GetPost_post } from "../generated/GetPost";
 import { Slideshow } from "./Slideshow";
 import { notUndefined } from "../utils";
+import { publicationState } from "../constants";
 
 export function PostViewer() {
   const params = useParams<{ id: string }>();
   const { data } = useQuery<GetPost, GetPostVariables>(POST_QUERY, {
-    variables: { id: params.id },
+    variables: { id: params.id, publicationState },
   });
 
   return (

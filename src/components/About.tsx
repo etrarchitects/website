@@ -3,12 +3,12 @@ import { ImgFormatType } from "../api";
 import { ABOUTUS_QUERY, TEAMS_QUERY } from "../api/query";
 import { GetTeams, GetTeams_teams } from "../generated/GetTeams";
 import { useLocationState } from "../hooks";
-import { apiUrl } from "../pages/Main";
 import { notUndefined } from "../utils";
 import { AltAnimatedList } from "./AltAnimatedList";
 import Moment from "react-moment";
 import { GetAboutUs } from "../generated/GetAboutUs";
 import { Markdown } from "./Markdown";
+import { apiUrl, publicationState } from "../constants";
 
 function toLeftRight(e: GetTeams_teams[]) {
   return e.map((e, i) => ({
@@ -23,7 +23,11 @@ interface GroupedTeam {
 }
 
 export function About() {
-  const { data } = useQuery<GetTeams>(TEAMS_QUERY);
+  const { data } = useQuery<GetTeams>(TEAMS_QUERY, {
+    variables: {
+      publicationState,
+    },
+  });
   const state = useLocationState();
   const animation = `fade-bottom-up ${state.delayed ? "animation-delay" : ""}`;
 
@@ -52,7 +56,11 @@ export function About() {
 }
 
 function AboutDescription({ animation }: { animation: string }) {
-  const { data } = useQuery<GetAboutUs>(ABOUTUS_QUERY);
+  const { data } = useQuery<GetAboutUs>(ABOUTUS_QUERY, {
+    variables: {
+      publicationState,
+    },
+  });
   return data && data.aboutUs && data.aboutUs.description ? (
     <Markdown
       className={`description ${animation}`}

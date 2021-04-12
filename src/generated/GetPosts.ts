@@ -5,6 +5,8 @@
 
 import { ImgFormatType } from "../api";
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetPosts
 // ====================================================
@@ -28,4 +30,5 @@ export interface GetPosts {
 
 export interface GetPostsVariables {
   category?: string | null;
+  publicationState?: PublicationState | null;
 }

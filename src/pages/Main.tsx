@@ -7,8 +7,7 @@ import { EtraLogo } from "../components/EtraLogo";
 import { HeaderFooter } from "../components/HeaderFooter";
 import { BackgroundSlideshow } from "../components/BackgroundSlideshow";
 import { useState } from "react";
-
-export const apiUrl = process.env.REACT_APP_STRAPI_API;
+import { apiUrl } from "../constants";
 
 export const apolloClient = new ApolloClient({
   uri: `${apiUrl}/graphql`,

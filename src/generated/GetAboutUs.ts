@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetAboutUs
 // ====================================================
@@ -14,4 +16,8 @@ export interface GetAboutUs_aboutUs {
 
 export interface GetAboutUs {
   aboutUs: GetAboutUs_aboutUs | null;
+}
+
+export interface GetAboutUsVariables {
+  publicationState?: PublicationState | null;
 }

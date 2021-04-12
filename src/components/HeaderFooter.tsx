@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { CATEGORY_QUERY } from "../api/query";
+import { publicationState } from "../constants";
 import { GetCategories } from "../generated/GetCategories";
 import { HistoryState } from "../hooks";
 import {
@@ -20,6 +21,9 @@ export function HeaderFooter() {
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useQuery<GetCategories>(CATEGORY_QUERY, {
+    variables: {
+      publicationState,
+    },
     onCompleted: (e) => {
       if (e.categories) {
         const currentLocation = location.pathname.split("/")[1];

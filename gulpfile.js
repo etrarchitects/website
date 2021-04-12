@@ -126,11 +126,11 @@ async function build(cb){
 
 
 async function cleanAfter(cb){
-  const file = path.join(outputPath,"globalTypes.ts");
-  const res = readFileSync(file)
-  console.log("DELETING....")
-  console.log(res.toString());
-  await execShellCommand(`rm -rf ${file}`)
+  // const file = path.join(outputPath,"globalTypes.ts");
+  // const res = readFileSync(file)
+  // console.log("DELETING....")
+  // console.log(res.toString());
+  // await execShellCommand(`rm -rf ${file}`)
   return cb();
 }
 

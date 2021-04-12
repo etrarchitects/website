@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetCategoryIntro
 // ====================================================
@@ -18,4 +20,5 @@ export interface GetCategoryIntro {
 
 export interface GetCategoryIntroVariables {
   id: string;
+  publicationState?: PublicationState | null;
 }

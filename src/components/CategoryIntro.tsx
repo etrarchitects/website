@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { CategoryIntroQuery } from "../api/query";
+import { publicationState } from "../constants";
 import {
   GetCategoryIntro,
   GetCategoryIntroVariables,
@@ -9,7 +10,7 @@ import { Markdown } from "./Markdown";
 export function CategoryIntro({ id }: { id: string }) {
   const { data } = useQuery<GetCategoryIntro, GetCategoryIntroVariables>(
     CategoryIntroQuery,
-    { variables: { id } }
+    { variables: { id, publicationState } }
   );
 
   if (data && data.category && data.category.intro)

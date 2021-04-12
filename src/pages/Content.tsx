@@ -8,6 +8,7 @@ import { AltAnimatedList } from "../components/AltAnimatedList";
 import { CategoryIntro } from "../components/CategoryIntro";
 import { Contacts } from "../components/Contacts";
 import { PostViewer } from "../components/PostViewer";
+import { apiUrl, publicationState } from "../constants";
 import {
   GetPosts,
   GetPostsVariables,
@@ -16,7 +17,6 @@ import {
 import { useLocationState } from "../hooks";
 import { AppDispatch, INCREMENT_CATEGORY, useTypedSelector } from "../reducers";
 import { notUndefined } from "../utils";
-import { apiUrl } from "./Main";
 
 export function Content() {
   const opened = useTypedSelector((state) => state.opened);
@@ -53,6 +53,7 @@ function PostList() {
   const { data } = useQuery<GetPosts, GetPostsVariables>(POSTS_QUERY, {
     variables: {
       category: category?.category.id ?? "",
+      publicationState,
     },
     pollInterval: 10 * 1000,
   });

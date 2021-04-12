@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const POSTS_QUERY = gql`
-query GetPosts($category: String){
-  posts(where: { category: $category }, publicationState:LIVE, sort:"sorting_date:desc") {
+query GetPosts($category: String, $publicationState: PublicationState){
+  posts(where: { category: $category }, publicationState:$publicationState, sort:"sorting_date:desc") {
     id
     title
     subtitle
@@ -14,8 +14,8 @@ query GetPosts($category: String){
 
 
 export const POST_QUERY = gql`
-query GetPost($id: ID!) {
-  post(id: $id, publicationState: LIVE){
+query GetPost($id: ID!, $publicationState: PublicationState) {
+  post(id: $id, publicationState: $publicationState){
     id
     title
     content
@@ -34,16 +34,16 @@ query GetPost($id: ID!) {
 `;
 
 export const CATEGORY_QUERY = gql`
-query GetCategories{
-   categories(sort: "order", publicationState: LIVE) {
+query GetCategories($publicationState: PublicationState){
+   categories(sort: "order", publicationState: $publicationState) {
       id
       type
    }
 }`;
 
 export const BACKGROUND_IMG_QUERY = gql`
-query GetBackgroundImages {
-  backgroundImg(publicationState: LIVE){
+query GetBackgroundImages($publicationState: PublicationState) {
+  backgroundImg(publicationState: $publicationState){
     images {
       img{
         formats
@@ -54,16 +54,16 @@ query GetBackgroundImages {
 `;
 
 export const CategoryIntroQuery = gql`
-  query GetCategoryIntro($id: ID!) {
-    category(id: $id, publicationState: LIVE) {
+  query GetCategoryIntro($id: ID!, $publicationState: PublicationState) {
+    category(id: $id, publicationState: $publicationState) {
       intro
     }
   }
 `;
 
 export const TEAMS_QUERY = gql`
-query GetTeams{
-  teams {
+query GetTeams($publicationState: PublicationState){
+  teams(publicationState: $publicationState) {
     name
     surname
     birthdate 
@@ -81,15 +81,15 @@ query GetTeams{
 }`
 
 export const ABOUTUS_QUERY = gql`
-query GetAboutUs {
-  aboutUs(publicationState: LIVE) {
+query GetAboutUs($publicationState: PublicationState) {
+  aboutUs(publicationState: $publicationState) {
     description
   }
 }`;
 
 export const CONTACTS_QUERY = gql`
-query GetContacts {
-  contact {
+query GetContacts($publicationState: PublicationState) {
+  contact(publicationState: $publicationState) {
     contact {
       address {
         street

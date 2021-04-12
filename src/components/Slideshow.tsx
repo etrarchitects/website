@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../constants";
 import { GetPost_post_slideshow } from "../generated/GetPost";
-import { apiUrl } from "../pages/Main";
 
 const delay = 3000;
 

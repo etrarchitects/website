@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { PublicationState } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetContacts
 // ====================================================
@@ -28,4 +30,8 @@ export interface GetContacts_contact {
 
 export interface GetContacts {
   contact: GetContacts_contact | null;
+}
+
+export interface GetContactsVariables {
+  publicationState?: PublicationState | null;
 }

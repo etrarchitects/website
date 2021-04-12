@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { CONTACTS_QUERY } from "../api/query";
+import { publicationState } from "../constants";
 import {
   GetContacts,
   GetContacts_contact_contact,
@@ -7,7 +8,11 @@ import {
 import { notUndefined } from "../utils";
 
 export function Contacts() {
-  const { data } = useQuery<GetContacts>(CONTACTS_QUERY);
+  const { data } = useQuery<GetContacts>(CONTACTS_QUERY, {
+    variables: {
+      publicationState,
+    },
+  });
 
   if (data && data.contact && data.contact.contact) {
     return (
