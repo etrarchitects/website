@@ -32,7 +32,7 @@ export function Slideshow({ slides }: { slides: GetPost_post_slideshow[] }) {
             <img
               src={`${apiUrl}${img.formats["large"].url}`}
               alt=""
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%" }}
             />
             <p className="caption text-shadow">{caption}</p>
           </div>
