@@ -15,13 +15,12 @@ export function BackgroundSlideshow({ onLoad }: { onLoad?: () => {} }) {
       publicationState,
     },
   });
-  return data && data.backgroundImg && data.backgroundImg.images !== null ? (
+
+  return (
     <InternalBackgroundSlideshow
-      images={data.backgroundImg.images}
+      images={data?.backgroundImg?.images ?? []}
       onLoad={onLoad}
     />
-  ) : (
-    <></>
   );
 }
 
@@ -79,6 +78,8 @@ function InternalBackgroundSlideshow({
       return <></>;
     }
   };
+
+  images?.length === 0 && onLoad && onLoad();
 
   return (
     <div className="home-slideshow">
