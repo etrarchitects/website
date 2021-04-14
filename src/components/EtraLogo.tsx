@@ -3,11 +3,11 @@ import { useLocationState } from "../hooks";
 export function EtraLogo() {
   const locationState = useLocationState();
   let sx = {
-    x: 100,
+    x: 97,
     y: "28.8%",
   };
   let dx = {
-    x: 200,
+    x: 202,
     y: "29.5",
   };
   let strokeWidth = "3";
