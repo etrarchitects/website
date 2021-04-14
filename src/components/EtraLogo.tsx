@@ -2,10 +2,14 @@ import { useLocationState } from "../hooks";
 
 export function EtraLogo() {
   const locationState = useLocationState();
-  let y_sx = "29.5%";
-  let y_dx = "28.4%";
-  let x_dx = 100;
-  let x_sx = 200;
+  let sx = {
+    x: 100,
+    y: "28.8%",
+  };
+  let dx = {
+    x: 200,
+    y: "29.5",
+  };
   let strokeWidth = "3";
   let len = 1000;
 
@@ -46,18 +50,18 @@ export function EtraLogo() {
           architects
         </text>
         <line
-          x1={x_dx}
-          y1={y_dx}
-          x2={x_dx - len}
-          y2={y_dx}
+          x1={sx.x}
+          y1={sx.y}
+          x2={sx.x - len}
+          y2={sx.y}
           strokeWidth={strokeWidth}
           stroke="white"
         />
         <line
-          x1={x_sx}
-          y1={y_sx}
-          x2={x_sx + len}
-          y2={y_sx}
+          x1={dx.x}
+          y1={dx.y}
+          x2={dx.x + len}
+          y2={dx.y}
           strokeWidth={strokeWidth}
           stroke="white"
         />
