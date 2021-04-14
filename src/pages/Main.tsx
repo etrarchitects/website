@@ -7,7 +7,7 @@ import { EtraLogo } from "../components/EtraLogo";
 import { HeaderFooter } from "../components/HeaderFooter";
 import { BackgroundSlideshow } from "../components/BackgroundSlideshow";
 import { useState } from "react";
-import { apiUrl } from "../constants";
+import { apiUrl, isInBuilding } from "../constants";
 
 export const apolloClient = new ApolloClient({
   uri: `${apiUrl}/graphql`,
@@ -26,15 +26,38 @@ export default function App() {
               setLoaded(true);
             }}
           />
-          {loaded && (
-            <>
-              <EtraLogo />
-              <HeaderFooter />
-              <Content />
-            </>
-          )}
+          {loaded && <AllContent />}
         </BrowserRouter>
       </Provider>
     </ApolloProvider>
   );
+}
+
+export function AllContent() {
+  console.log(isInBuilding);
+  console.log(process.env);
+  if (isInBuilding)
+    return (
+      <>
+        <h1
+          style={{
+            color: "white",
+            textTransform: "uppercase",
+            textAlign: "center",
+            marginTop: "30px",
+          }}
+        >
+          Sito in costruzione
+        </h1>
+        <EtraLogo />
+      </>
+    );
+  else
+    return (
+      <>
+        <EtraLogo />
+        <HeaderFooter />
+        <Content />
+      </>
+    );
 }
