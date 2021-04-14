@@ -103,7 +103,7 @@ function PostMetadata(props: { post: GetPosts_posts; onClick: () => {} }) {
 function PostImg(props: { formats: ImgFormatType; onClick: () => {} }) {
   return (
     <img
-      className="rounded-lg shadow-lg"
+      className="shadow-lg"
       src={`${apiUrl}${props.formats.small.url}`}
       alt=""
       onClick={props.onClick}

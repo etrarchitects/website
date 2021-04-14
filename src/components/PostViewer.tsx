@@ -39,7 +39,9 @@ function Content({ post }: { post: GetPost_post }) {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-9">
-            <Markdown content={post.content} />
+            <section className="post">
+              <Markdown content={post.content} />
+            </section>
           </div>
           <div className="col-lg-3">
             {post.metadata &&
@@ -50,7 +52,7 @@ function Content({ post }: { post: GetPost_post }) {
                       <h3 className="title text-primary text-uppercase">
                         {e.title}
                       </h3>
-                      <p className="content">{e.content}</p>
+                      <Markdown className="post-metadata" content={e.content} />
                     </div>
                   );
                 } else {

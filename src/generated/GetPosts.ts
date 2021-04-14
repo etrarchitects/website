@@ -20,7 +20,7 @@ export interface GetPosts_posts {
   __typename: "Post";
   id: string;
   title: string;
-  subtitle: string;
+  subtitle: string | null;
   thumbnail: GetPosts_posts_thumbnail;
 }
 

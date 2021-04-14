@@ -34,3 +34,25 @@
     transform: translateY(0%);
   }
 }
+
+.post-metadata {
+  ul {
+     padding: 0;
+     li {
+        list-style-type: none;
+     }
+  }
+}
+
+section.post {
+
+  p {
+    text-align: justify;
+    text-indent: 1.5em;
+
+  }
+
+  img {
+    width: 100%;
+  }
+}
