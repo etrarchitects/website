@@ -101,3 +101,12 @@ query GetContacts($publicationState: PublicationState) {
     }
   }
 }`;
+
+export const UNDER_CONSTRUCTION_QUERY = gql`
+query UnderConstruction($publicationState: PublicationState) {
+  underConstruction(publicationState:$publicationState) {
+    content
+    enabled
+  }
+}
+`;
