@@ -59,9 +59,10 @@ function AllContent() {
     }
   );
 
-  console.log(data);
-
-  return data && data.underConstruction && data.underConstruction.enabled ? (
+  return process.env.NODE_ENV === "production" &&
+    data &&
+    data.underConstruction &&
+    data.underConstruction.enabled ? (
     <h3 className="container-fluid mt-2">
       <div className="row justify-content-center">
         <Markdown
