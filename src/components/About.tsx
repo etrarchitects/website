@@ -12,7 +12,7 @@ import { apiUrl, publicationState } from "../constants";
 
 function toLeftRight(e: GetTeams_teams[]) {
   return e.map((e, i) => ({
-    fst: <AboutImg img={e.profile.formats} />,
+    fst: e.profile ? <AboutImg img={e.profile.formats} /> : <></>,
     snd: <AboutMetadata teamComponent={e} />,
     key: i.toString(),
   }));
@@ -78,6 +78,7 @@ function AboutList({
   groupedTeam: GroupedTeam;
   animation: string;
 }) {
+  console.log(groupedTeam);
   return (
     <>
       {Object.entries(groupedTeam).map((e, i) => (

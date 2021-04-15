@@ -34,7 +34,7 @@ export interface GetTeams_teams {
   description: string | null;
   member_category: GetTeams_teams_member_category | null;
   member_role: GetTeams_teams_member_role | null;
-  profile: GetTeams_teams_profile;
+  profile: GetTeams_teams_profile | null;
 }
 
 export interface GetTeams {

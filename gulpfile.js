@@ -34,10 +34,6 @@ const toEdit = [
       {
         from: "formats: any | null;",
         to: "formats: ImgFormatType;"
-      },
-      {
-        from: "profile: GetTeams_teams_profile | null;",
-        to: "profile: GetTeams_teams_profile;"
       }
     ]
   },
