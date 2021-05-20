@@ -24,6 +24,7 @@ export interface GetTeams_teams_member_role {
 export interface GetTeams_teams_profile {
   __typename: "UploadFile";
   formats: ImgFormatType;
+  alternativeText: string | null;
 }
 
 export interface GetTeams_teams {

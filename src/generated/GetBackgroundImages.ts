@@ -14,6 +14,7 @@ import { PublicationState } from "./globalTypes";
 export interface GetBackgroundImages_backgroundImg_images_img {
   __typename: "UploadFile";
   formats: ImgFormatType;
+  alternativeText: string | null;
 }
 
 export interface GetBackgroundImages_backgroundImg_images {

@@ -8,6 +8,7 @@ query GetPosts($category: String, $publicationState: PublicationState){
     subtitle
     thumbnail {
       formats
+      alternativeText
     }
   }
 }`;
@@ -24,10 +25,11 @@ query GetPost($id: ID!, $publicationState: PublicationState) {
       content
     }
     slideshow {
+      caption
       img {
         formats
+        alternativeText
       }
-      caption
     }
   }
 }
@@ -47,6 +49,7 @@ query GetBackgroundImages($publicationState: PublicationState) {
     images {
       img{
         formats
+        alternativeText
       }
     }
   }
@@ -76,6 +79,7 @@ query GetTeams($publicationState: PublicationState){
     }
     profile {
       formats
+      alternativeText
     }
   }
 }`

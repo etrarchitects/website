@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { apiUrl } from "../constants";
 import { GetPost_post_slideshow } from "../generated/GetPost";
+import { ResponsiveImage } from "./ResponsiveImage";
 
 const delay = 3000;
 
@@ -11,7 +11,6 @@ export function Slideshow({ slides }: { slides: GetPost_post_slideshow[] }) {
     let interval: NodeJS.Timeout | undefined;
     if (slides.length > 1) {
       interval = setInterval(() => {
-        console.log("ASS");
         setIndex((prevIndex) =>
           prevIndex === slides.length - 1 ? 0 : prevIndex + 1
         );
@@ -28,12 +27,8 @@ export function Slideshow({ slides }: { slides: GetPost_post_slideshow[] }) {
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
       >
         {slides.map(({ img, caption }, index) => (
-          <div className="slide shadow rounded-lg" key={index}>
-            <img
-              src={`${apiUrl}${img.formats["large"].url}`}
-              alt=""
-              style={{ width: "100%", height: "100%" }}
-            />
+          <div className="slide" key={index}>
+            <ResponsiveImage img={img} />
             <p className="caption text-shadow">{caption}</p>
           </div>
         ))}

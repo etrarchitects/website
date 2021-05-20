@@ -20,12 +20,13 @@ export interface GetPost_post_metadata {
 export interface GetPost_post_slideshow_img {
   __typename: "UploadFile";
   formats: ImgFormatType;
+  alternativeText: string | null;
 }
 
 export interface GetPost_post_slideshow {
   __typename: "ComponentPostSlider";
-  img: GetPost_post_slideshow_img;
   caption: string;
+  img: GetPost_post_slideshow_img;
 }
 
 export interface GetPost_post {

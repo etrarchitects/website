@@ -63,7 +63,7 @@ function InternalBackgroundSlideshow({
           key={i}
           className={getClass(i)}
           src={src}
-          alt={format.alternativeText}
+          alt=""
           onLoad={
             i === 0 && onLoad
               ? (e) => {

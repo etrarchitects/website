@@ -1,7 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { ImgFormatType } from "../api";
 import { ABOUTUS_QUERY, TEAMS_QUERY } from "../api/query";
-import { GetTeams, GetTeams_teams } from "../generated/GetTeams";
+import {
+  GetTeams,
+  GetTeams_teams,
+  GetTeams_teams_profile,
+} from "../generated/GetTeams";
 import { useLocationState } from "../hooks";
 import { notUndefined } from "../utils";
 import { AltAnimatedList } from "./AltAnimatedList";
@@ -12,7 +15,7 @@ import { apiUrl, publicationState } from "../constants";
 
 function toLeftRight(e: GetTeams_teams[]) {
   return e.map((e, i) => ({
-    fst: e.profile ? <AboutImg img={e.profile.formats} /> : <></>,
+    fst: e.profile ? <AboutImg img={e.profile} /> : <></>,
     snd: <AboutMetadata teamComponent={e} />,
     key: i.toString(),
   }));
@@ -98,12 +101,12 @@ function AboutList({
   );
 }
 
-function AboutImg(props: { img: ImgFormatType }) {
+function AboutImg({ img }: { img: GetTeams_teams_profile }) {
   return (
     <img
       className="rounded-lg shadow-lg"
-      src={`${apiUrl}${props.img["medium"].url}`}
-      alt={props.img["medium"].alternativeText}
+      src={`${apiUrl}${img.formats["medium"].url}`}
+      alt={img.alternativeText ?? ""}
       style={{ maxHeight: "600px", maxWidth: "100%" }}
     />
   );

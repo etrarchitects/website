@@ -14,6 +14,7 @@ import { PublicationState } from "./globalTypes";
 export interface GetPosts_posts_thumbnail {
   __typename: "UploadFile";
   formats: ImgFormatType;
+  alternativeText: string | null;
 }
 
 export interface GetPosts_posts {
