@@ -18,6 +18,7 @@ import {
   UnderConstruction,
   UnderConstructionVariables,
 } from "../generated/UnderConstruction";
+import { PublicationState } from "../generated/globalTypes";
 
 export const apolloClient = new ApolloClient({
   uri: `${apiUrl}/graphql`,
@@ -48,7 +49,7 @@ function AllContent() {
     }
   );
 
-  return process.env.NODE_ENV === "production" &&
+  return publicationState === PublicationState.LIVE &&
     data &&
     data.underConstruction &&
     data.underConstruction.enabled ? (
