@@ -81,7 +81,6 @@ function AboutList({
   groupedTeam: GroupedTeam;
   animation: string;
 }) {
-  console.log(groupedTeam);
   return (
     <>
       {Object.entries(groupedTeam).map((e, i) => (

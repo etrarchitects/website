@@ -10,7 +10,6 @@ const mediaConditions = [
 ];
 
 export function ResponsiveImage({ img }: { img: GetPost_post_slideshow_img }) {
-  console.log(img);
   const srcSet = formats
     .map((e) => img.formats[e])
     .map((e) => `${apiUrl}${e.url} ${e.width}w`)

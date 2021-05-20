@@ -19,12 +19,10 @@ import { AppDispatch, INCREMENT_CATEGORY, useTypedSelector } from "../reducers";
 import { notUndefined } from "../utils";
 
 export function Content() {
-  const opened = useTypedSelector((state) => state.opened);
-
   return (
-    <Switch>
-      <Route exact path="/"></Route>
-      <main className={opened ? "d-none" : ""}>
+    <main>
+      <Switch>
+        <Route exact path="/"></Route>
         <Route exact path="/post/:id">
           <PostViewer />
         </Route>
@@ -37,8 +35,8 @@ export function Content() {
         <Route exact path="/:category">
           <PostList />
         </Route>
-      </main>
-    </Switch>
+      </Switch>
+    </main>
   );
 }
 

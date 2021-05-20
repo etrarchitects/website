@@ -11,7 +11,6 @@ import { Provider } from "react-redux";
 import { EtraLogo } from "../components/EtraLogo";
 import { HeaderFooter } from "../components/HeaderFooter";
 import { BackgroundSlideshow } from "../components/BackgroundSlideshow";
-import { useState } from "react";
 import { apiUrl, publicationState } from "../constants";
 import { UNDER_CONSTRUCTION_QUERY } from "../api/query";
 import { Markdown } from "../components/Markdown";
@@ -26,23 +25,13 @@ export const apolloClient = new ApolloClient({
 });
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false);
-
   return (
     <ApolloProvider client={apolloClient}>
       <Provider store={store}>
         <BrowserRouter basename="/">
-          <BackgroundSlideshow
-            onLoad={async () => {
-              setLoaded(true);
-            }}
-          />
-          {loaded && (
-            <>
-              <EtraLogo />
-              <AllContent />
-            </>
-          )}
+          <BackgroundSlideshow />
+          <EtraLogo />
+          <AllContent />
         </BrowserRouter>
       </Provider>
     </ApolloProvider>

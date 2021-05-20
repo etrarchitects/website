@@ -9,7 +9,7 @@ import {
 
 const mod = (x: number, n: number): number => ((x % n) + n) % n;
 
-export function BackgroundSlideshow({ onLoad }: { onLoad?: () => {} }) {
+export function BackgroundSlideshow() {
   const { data } = useQuery<GetBackgroundImages>(BACKGROUND_IMG_QUERY, {
     variables: {
       publicationState,
@@ -17,10 +17,7 @@ export function BackgroundSlideshow({ onLoad }: { onLoad?: () => {} }) {
   });
 
   return (
-    <InternalBackgroundSlideshow
-      images={data?.backgroundImg?.images ?? []}
-      onLoad={onLoad}
-    />
+    <InternalBackgroundSlideshow images={data?.backgroundImg?.images ?? []} />
   );
 }
 
@@ -56,36 +53,19 @@ function InternalBackgroundSlideshow({
     i: number
   ): ReactElement => {
     if (e !== null && e.img !== null && e.img.formats !== null) {
-      const format = e.img.formats["extra-large"];
+      const format = e.img.formats["large"];
       const src = `${apiUrl}${format.url}`;
-      return (
-        <img
-          key={i}
-          className={getClass(i)}
-          src={src}
-          alt=""
-          onLoad={
-            i === 0 && onLoad
-              ? (e) => {
-                  while (!(e.target as any).complete) {}
-                  onLoad();
-                }
-              : undefined
-          }
-        />
-      );
+      return <img key={i} className={getClass(i)} src={src} alt="" />;
     } else {
       return <></>;
     }
   };
 
-  images?.length === 0 && onLoad && onLoad();
-
   return (
     <div className="home-slideshow">
       <div
         className={`photos-container ${
-          images === null || images.length > 0 ? "" : "bg-primary"
+          images === null || images.length > 0 ? "" : ""
         }`}
       >
         {images !== null && images.map(getImg)}
