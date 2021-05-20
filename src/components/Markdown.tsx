@@ -18,9 +18,8 @@ export function Markdown(props: {
 
   return (
     <div
-      className={props.className}
+      className={`markdown ${props.className}`}
       style={props.style}
-      //  className={markdownStyles["markdown"]}
       dangerouslySetInnerHTML={{ __html: content ?? "" }}
     />
   );
