@@ -67,7 +67,11 @@ function PostList() {
 
   return data && category && data.posts !== null ? (
     <AltAnimatedList
-      list={data.posts.slice(0, category.limit).filter(notUndefined).map(f)}
+      list={data.posts
+        .slice(0, category.limit)
+        .filter(notUndefined)
+        .filter((e) => e.thumbnail != null && e.thumbnail.formats != null)
+        .map(f)}
       rowClass="my-4"
       animation={animation}
       onScrollEnd={() =>
