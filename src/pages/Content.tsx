@@ -19,8 +19,9 @@ import { AppDispatch, INCREMENT_CATEGORY, useTypedSelector } from "../reducers";
 import { notUndefined } from "../utils";
 
 export function Content() {
+  const opened = useTypedSelector((state) => state.opened);
   return (
-    <main>
+    <main style={{ display: opened ? "none" : "" }}>
       <Switch>
         <Route exact path="/"></Route>
         <Route exact path="/post/:id">
