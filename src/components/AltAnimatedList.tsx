@@ -1,26 +1,13 @@
 import { ReactNode, useRef } from "react";
 import Reveal from "react-awesome-reveal";
-import { keyframes } from "@emotion/react";
-import { Keyframes } from "@emotion/serialize";
-
-const customAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
+import { bottomUpAnimation } from "../constants";
+import { useLocationState } from "../hooks";
 
 interface AltListProps {
   outerContainerClass?: string;
   innerContainerClass?: string;
   rowClass?: string;
   onScrollEnd?: VoidFunction;
-  animation?: Keyframes;
-  animationDuration?: number;
-  animationDelay?: number;
   list: {
     fst: JSX.Element;
     snd: JSX.Element;
@@ -32,6 +19,7 @@ interface AltListProps {
 export const AltAnimatedList = ({ children, ...props }: AltListProps) => {
   const container = useRef<HTMLDivElement>(null);
   const altList = useRef<HTMLDivElement>(null);
+  const state = useLocationState();
 
   const onScroll = (_: any) => {
     if (container.current != null && altList.current != null) {
@@ -52,9 +40,9 @@ export const AltAnimatedList = ({ children, ...props }: AltListProps) => {
       <div className={props.innerContainerClass ?? "container"} ref={altList}>
         <Reveal
           triggerOnce
-          keyframes={props.animation ?? customAnimation}
-          duration={props.animationDuration ?? 0}
-          delay={props.animationDelay}
+          keyframes={bottomUpAnimation}
+          duration={2000}
+          delay={state.delayed ? 1000 : 0}
         >
           {props.list.map((e, i) => (
             <div className={`row ${props.rowClass}`} key={e.key}>

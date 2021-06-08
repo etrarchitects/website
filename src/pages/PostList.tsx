@@ -11,32 +11,15 @@ import {
   GetPostsVariables,
   GetPosts_posts,
 } from "../generated/GetPosts";
-// import { useLocationState } from "../hooks";
 import { AppDispatch, INCREMENT_CATEGORY, useTypedSelector } from "../reducers";
 import { notUndefined } from "../utils";
-import { keyframes } from "@emotion/react";
-import { useLocationState } from "../hooks";
-
-const customAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(200px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 export function PostList() {
   const category = useTypedSelector((state) =>
     state.category.find((e) => e.active)
   );
   const dispatch = useDispatch<AppDispatch>();
-  const state = useLocationState();
   const history = useHistory();
-  //   const animation = `fade-bottom-up ${state.delayed ? "animation-delay" : ""}`;
   const { data } = useQuery<GetPosts, GetPostsVariables>(POSTS_QUERY, {
     variables: {
       category: category?.category.id ?? "",
@@ -67,9 +50,6 @@ export function PostList() {
         data.posts.length >= category.limit &&
         dispatch({ type: INCREMENT_CATEGORY })
       }
-      animation={customAnimation}
-      animationDuration={3000}
-      animationDelay={state.delayed ? 1000 : 0}
     >
       <CategoryIntro id={category.category.id} />
     </AltAnimatedList>
