@@ -13,12 +13,12 @@ import { HeaderFooter } from "../components/HeaderFooter";
 import { BackgroundSlideshow } from "../components/BackgroundSlideshow";
 import { apiUrl, publicationState } from "../constants";
 import { UNDER_CONSTRUCTION_QUERY } from "../api/query";
-import { Markdown } from "../components/Markdown";
 import {
   UnderConstruction,
   UnderConstructionVariables,
 } from "../generated/UnderConstruction";
 import { PublicationState } from "../generated/globalTypes";
+import { Remark } from "react-remark";
 
 export const apolloClient = new ApolloClient({
   uri: `${apiUrl}/graphql`,
@@ -55,10 +55,9 @@ function AllContent() {
     data.underConstruction.enabled ? (
     <h3 className="container-fluid mt-2">
       <div className="row justify-content-center">
-        <Markdown
-          className="text-white text-center col-lg-8"
-          content={data.underConstruction.content}
-        />
+        <div className="text-white text-center col-lg-8">
+          <Remark children={data.underConstruction.content} />
+        </div>
       </div>
     </h3>
   ) : (

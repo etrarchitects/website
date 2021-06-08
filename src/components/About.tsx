@@ -10,7 +10,7 @@ import { notUndefined } from "../utils";
 import { AltAnimatedList } from "./AltAnimatedList";
 import Moment from "react-moment";
 import { GetAboutUs } from "../generated/GetAboutUs";
-import { Markdown } from "./Markdown";
+import { Remark } from "react-remark";
 import { apiUrl, publicationState } from "../constants";
 
 function toLeftRight(e: GetTeams_teams[]) {
@@ -65,10 +65,9 @@ function AboutDescription({ animation }: { animation: string }) {
     },
   });
   return data && data.aboutUs && data.aboutUs.description ? (
-    <Markdown
-      className={`description ${animation}`}
-      content={data.aboutUs.description}
-    />
+    <div className={`description ${animation}`}>
+      <Remark children={data.aboutUs.description} />
+    </div>
   ) : (
     <></>
   );
@@ -92,7 +91,6 @@ function AboutList({
             list={toLeftRight(e[1])}
             outerContainerClass=""
             rowClass="teamComponent"
-            animation={animation}
           />
         </div>
       ))}

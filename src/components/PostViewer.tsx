@@ -1,12 +1,13 @@
 import "react-slideshow-image/dist/styles.css";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router";
-import { Markdown } from "./Markdown";
 import { POST_QUERY } from "../api/query";
 import { GetPost, GetPostVariables, GetPost_post } from "../generated/GetPost";
 import { Slideshow } from "./Slideshow";
 import { notUndefined } from "../utils";
 import { publicationState } from "../constants";
+import { Fade } from "react-awesome-reveal";
+import { Remark } from "react-remark";
 
 export function PostViewer() {
   const params = useParams<{ id: string }>();
@@ -16,13 +17,15 @@ export function PostViewer() {
 
   return (
     <div className="main-container">
-      <div className="container bg-white shadow-lg fade-bottom-up">
-        {data !== undefined && data.post !== null ? (
-          <Content post={data.post} />
-        ) : (
-          <></>
-        )}
-      </div>
+      <Fade triggerOnce duration={3000}>
+        <div className="container bg-white shadow-lg">
+          {data !== undefined && data.post !== null ? (
+            <Content post={data.post} />
+          ) : (
+            <></>
+          )}
+        </div>
+      </Fade>
     </div>
   );
 }
@@ -40,7 +43,7 @@ function Content({ post }: { post: GetPost_post }) {
         <div className="row">
           <div className="col-lg-9">
             <section className="post">
-              <Markdown content={post.content} />
+              <Remark children={post.content} />
             </section>
           </div>
           <div className="col-lg-3">
@@ -52,7 +55,9 @@ function Content({ post }: { post: GetPost_post }) {
                       <h3 className="title text-primary text-uppercase">
                         {e.title}
                       </h3>
-                      <Markdown className="post-metadata" content={e.content} />
+                      <div className="post-metadata">
+                        <Remark children={e.content} />
+                      </div>
                     </div>
                   );
                 } else {

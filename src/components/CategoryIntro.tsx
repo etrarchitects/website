@@ -5,7 +5,7 @@ import {
   GetCategoryIntro,
   GetCategoryIntroVariables,
 } from "../generated/GetCategoryIntro";
-import { Markdown } from "./Markdown";
+import { Remark } from "react-remark";
 
 export function CategoryIntro({ id }: { id: string }) {
   const { data } = useQuery<GetCategoryIntro, GetCategoryIntroVariables>(
@@ -15,11 +15,9 @@ export function CategoryIntro({ id }: { id: string }) {
 
   if (data && data.category && data.category.intro)
     return (
-      <Markdown
-        content={data.category.intro}
-        className="text-center text-white"
-        style={{ fontSize: "1vw" }}
-      />
+      <div className="text-center text-white" style={{ fontSize: "1vw" }}>
+        <Remark children={data.category.intro} />
+      </div>
     );
   else return <></>;
 }

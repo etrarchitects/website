@@ -1,113 +1,56 @@
 @use "variables.scss" as *;
 
 .header-footer {
-   // z-index: -50;
-   @include full-page;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   
-   .footer {
-      max-height: 60px;
-   }
+  // z-index: -50;
+  @include full-page;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-   .header {
-      height: 70px;
-   }
+  .footer {
+    max-height: 60px;
+  }
 
-   .header, .footer {
+  .header {
+    height: 70px;
+  }
+
+  .header,
+  .footer {
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+
+    ul {
+      // margin: 16px 0;
+      max-width: fit-content;
+      flex: 1;
+      flex-wrap: wrap;
       display: flex;
-      justify-content: center;
+      list-style: none;
+      padding: 0;
+      flex-direction: row;
 
-      ul {
-         // margin: 16px 0;
-         max-width: fit-content;
-         flex: 1;
-         flex-wrap: wrap;
-         display: flex;
-         list-style: none;
-         padding:0;
-         flex-direction: row;
-         
-         li {
-            padding: 0 10px;
-            font-weight: 300;
-            text-transform: lowercase;
-            font-size: 1rem;
-            text-shadow: $text-shadow;
-            color: #FFFFFF;
-            padding-bottom: 0.2rem;
-            cursor: pointer;
-         }
+      li {
+        padding: 0 10px;
+        font-weight: 300;
+        text-transform: lowercase;
+        font-size: 1rem;
+        text-shadow: $text-shadow;
+        color: #ffffff;
+        padding-bottom: 0.2rem;
+        cursor: pointer;
       }
+    }
 
-      .dummy {
-         cursor: pointer;
-         flex: 0;
-         transition: flex 3s;
-         
-         &.moveRight {
-            flex: auto;
-         }
+    .dummy {
+      cursor: pointer;
+      flex: 0;
+      transition: flex 3s;
+
+      &.moveRight {
+        flex: auto;
       }
-
-      
-   }
-
+    }
+  }
 }
-
-/* HAMBURGER MENU */
-
-button.menu {
-   max-width: fit-content;
-   flex: 1;
-   flex-wrap: wrap;
-   z-index: 2;
-   background-color: transparent;
-   outline: none;
-   border: none;
-   cursor: pointer;
-}
-
-button.menu svg {
-   width: 40px;
-   height: 40px;
-   filter: drop-shadow($text-shadow);
-}
-
-.line {
-   fill: none;
-   stroke: currentColor;
-   stroke-width: 6;
-   transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-     stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.line1 {
-   stroke-dasharray: 60 207;
-   stroke-width: 6;
- }
- .line2 {
-   stroke-dasharray: 60 60;
-   stroke-width: 6;
- }
- .line3 {
-   stroke-dasharray: 60 207;
-   stroke-width: 6;
- }
- .opened .line1 {
-   stroke-dasharray: 90 207;
-   stroke-dashoffset: -134;
-   stroke-width: 6;
- }
- .opened .line2 {
-   stroke-dasharray: 1 60;
-   stroke-dashoffset: -30;
-   stroke-width: 6;
- }
- .opened .line3 {
-   stroke-dasharray: 90 207;
-   stroke-dashoffset: -134;
-   stroke-width: 6;
- }
-/* END */
