@@ -1,6 +1,10 @@
 import { useLocationState } from "../hooks";
 
-export function EtraLogo() {
+interface EtraLogoProps {
+  className?: string;
+}
+
+export function EtraLogo(props: EtraLogoProps) {
   const locationState = useLocationState();
   let sx = {
     x: 97,
@@ -23,7 +27,7 @@ export function EtraLogo() {
   return (
     <div
       id="etra-logo"
-      className={`etra-logo-container ${f()}`}
+      className={`etra-logo-container ${props.className ?? f()}`}
       // style={locationState.moveDown ? { animationDelay: "0.2s" } : {}}
     >
       <svg viewBox="0 0 300 100">

@@ -31,7 +31,6 @@ export default function App() {
       <Provider store={store}>
         <BrowserRouter basename="/">
           <BackgroundSlideshow />
-          <EtraLogo />
           <AllContent />
         </BrowserRouter>
       </Provider>
@@ -53,15 +52,19 @@ function AllContent() {
     data &&
     data.underConstruction &&
     data.underConstruction.enabled ? (
-    <h3 className="container-fluid mt-2">
-      <div className="row justify-content-center">
-        <div className="text-white text-center col-lg-8">
-          <Remark children={data.underConstruction.content} />
+    <>
+      <EtraLogo className="top" />
+      <h3 className="container-fluid mt-2">
+        <div className="row justify-content-center">
+          <div className="text-white text-center col-lg-8">
+            <Remark children={data.underConstruction.content} />
+          </div>
         </div>
-      </div>
-    </h3>
+      </h3>
+    </>
   ) : (
     <>
+      <EtraLogo />
       <HeaderFooter />
       <Content />
     </>
